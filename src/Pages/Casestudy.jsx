@@ -77,9 +77,7 @@ const Casestudy = () => {
 </button>
           </div>
 
-          <p className="text-xl md:text-3xl font-bold text-gray-200">
-            Read Case Studies Below
-          </p>
+        
         </div>
       </div>
 

@@ -5,7 +5,7 @@ import Image3 from '../assets/test7.png'
 
 const Ourstory = () => {
   return (
-    <div className=' px-4 md:px-35 min-h-screen py-10'> 
+    <div className=' px-4 md:px-35 py-10 lg:mb-4'> 
         <div className="border-b border-black w-full pb-2 mb-10">
           <h1 className="font-bold text-3xl md:text-5xl text-gray-800">Our Story</h1>
         </div>
@@ -45,18 +45,6 @@ const Ourstory = () => {
           
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="order-2 md:order-1">
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-              Looking ahead, we’re committed to expanding our reach and impact. 
-              With new projects, partnerships, and a vision for the future, 
-              we’re excited to write the next chapter — together with you.
-            </p>
-            </div>
-               <div className="order-1 md:order-2 rounded-2xl">
-          
-          </div>
-        </div>
         
       
     </div>

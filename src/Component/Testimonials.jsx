@@ -46,7 +46,7 @@ const Testimonials = React.forwardRef((props, ref) => {
                 <img
                   src={t.img}
                   alt={`Testimonial ${t.id}`}
-                  className="w-64 h-40 md:h-100  rounded-lg object-cover shadow-md"
+                  className="w-64 h-100  rounded-lg object-cover shadow-md"
                 />
               </div>
             ))}

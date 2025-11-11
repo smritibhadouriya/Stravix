@@ -35,7 +35,7 @@ const Team = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-white flex justify-center md:pt-10 px-4">
+      <div className="min-h-screen bg-white flex justify-center md:pt-30 px-4">
         <div className="flex flex-col items-center space-y-4 md:space-y-4">
           {/* Team Images */}
           <div className="hidden md:flex items-center justify-center gap-4 md:gap-8">
@@ -53,12 +53,13 @@ const Team = () => {
             <img src={Team6} alt="Team 6" className="w-24 h-24 md:w-100 md:h-40 object-contain" />
           </div>
           <div className="flex md:hidden flex-col items-center space-y-4 mt-2">
-            <img src={Team1} alt="Team 1" className="w-60 h-30 object-contain" />
-            <img src={Team2} alt="Team 2" className="w-60 h-30 object-contain" />
-            <img src={Team3} alt="Team 3" className="w-60 h-30 object-contain" />
-            <img src={Team4} alt="Team 4" className="w-60 h-30 object-contain" />
-            <img src={Team5} alt="Team 5" className="w-60 h-30 object-contain" />
-            <img src={Team6} alt="Team 6" className="w-60 h-30 object-contain" />
+          
+            <img src={Team3} alt="Team 3" className="w-100 h-30 object-contain" />
+            <img src={Team4} alt="Team 4" className="w-100 h-30 object-contain" />
+              <img src={Team1} alt="Team 1" className="w-100 h-30 object-contain" />
+            <img src={Team2} alt="Team 2" className="w-100 h-30 object-contain" />
+            <img src={Team5} alt="Team 5" className="w-100 h-30 object-contain" />
+            <img src={Team6} alt="Team 6" className="w-100 h-30 object-contain" />
           </div>
         </div>
       </div>

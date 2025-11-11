@@ -73,17 +73,17 @@ const Ourvalues = () => {
                     <img
                       src={value.img}
                       alt={value.title}
-                      className="w-24  h-24 md:w-100  md:h-70 object-contain "
+                      className="w-60  md:w-100  md:h-70 object-contain "
                     />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-black mb-3">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-black mb-3">
                     {value.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-700 text-md md:text-lg max-w-xs leading-relaxed">
+                  <p className="text-gray-700 text-lg max-w-xs leading-relaxed">
                     {value.desc}
                   </p>
                 </div>
