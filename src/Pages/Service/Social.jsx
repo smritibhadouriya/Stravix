@@ -10,7 +10,7 @@ import BR from '../../assets/pink-bg.jpg';
 
 // Images for "What we offer" section
 import Serve1 from '../../assets/Serve1.jpeg';
-import Serve2 from '../../assets/serve2.jpeg';
+import Serve2 from '../../assets/Serve2.jpeg';
 import Serve3 from '../../assets/Serve3.jpeg';
 
 const Social = () => {
