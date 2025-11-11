@@ -27,7 +27,7 @@ const Testimonials = React.forwardRef((props, ref) => {
       {...props}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-4 pb-4 border-b border-black">
+        <div className="flex flex-row md:flex-row justify-between items-center mb-4 pb-4 border-b border-black">
           <h2 className="text-3xl md:text-4xl font-bold text-black">
             Testimonials
           </h2>
