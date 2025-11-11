@@ -1,7 +1,40 @@
 // File: DigitalMarketingPage.jsx
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import {caseStudies} from '../../Data/CasestudyData.js'
 
 const DigitalMarketingPage = () => {
+  const [activeCaseIndex, setActiveCaseIndex] = useState(0);
+  const caseRefs = useRef([]);
+
+  // Filter Digital case studies
+  const digitalCases = caseStudies.filter(cs => cs.service === 'Digital');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = caseRefs.current.indexOf(entry.target);
+            if (index !== -1) {
+              setActiveCaseIndex(index);
+            }
+          }
+        });
+      },
+      { threshold: 0.6, rootMargin: '0px 0px -20% 0px' }
+    );
+
+    caseRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      caseRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [digitalCases.length]);
+
   return (
     <>
       {/* Hero Section */}
@@ -47,7 +80,7 @@ const DigitalMarketingPage = () => {
         </div>
       </section>
 
-      {/* Case Study Section */}
+      {/* Case Study Section - Dynamic & Scroll-Synced */}
       <section className="min-h-screen bg-yellow-50 flex items-center justify-center px-6 md:px-12 py-20">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-black pb-4 mb-12">
@@ -55,36 +88,54 @@ const DigitalMarketingPage = () => {
               Success in Action
             </h1>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-black mb-4">+320% ROI for UrbanVibe Fashion</h3>
-              <p className="text-gray-700 mb-6">
-                Transformed a local boutique into a national sensation using hyper-targeted Instagram Reels and TikTok campaigns.
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">
-                    ✓
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left: Scrollable Case Studies */}
+            <div className="space-y-24 max-h-screen overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-black scrollbar-track-yellow-100">
+              {digitalCases.map((study, idx) => (
+                <div
+                  key={idx}
+                  ref={(el) => (caseRefs.current[idx] = el)}
+                  className="scroll-mt-32"
+                >
+                  <h3 className="text-2xl font-bold text-black mb-4">{study.title}</h3>
+                  <p className="text-gray-700 mb-6" dangerouslySetInnerHTML={{ __html: study.description }} />
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">
+                        ✓
+                      </div>
+                      <span className="text-gray-800">{study.view.toLocaleString()} views</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">
+                        ✓
+                      </div>
+                      <span className="text-gray-800">Service: {study.service}</span>
+                    </div>
+                    {study.top && (
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                          ★
+                        </div>
+                        <span className="text-gray-800 font-semibold">Featured Case</span>
+                      </div>
+                    )}
                   </div>
-                  <span className="text-gray-800">2.4M organic reach in 90 days</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">
-                    ✓
-                  </div>
-                  <span className="text-gray-800">47% increase in online sales</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">
-                    ✓
-                  </div>
-                  <span className="text-gray-800">Engagement rate jumped to 12.3%</span>
-                </div>
-              </div>
+              ))}
             </div>
-            <div className="bg-white border-4 border-black rounded-3xl overflow-hidden shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
-              <div className="bg-gradient-to-br from-pink-200 to-yellow-200 h-96 flex items-center justify-center">
-                <p className="text-black font-bold text-xl">Case Study Visual</p>
+
+            {/* Right: Sticky Image Box - Changes on Scroll */}
+            <div className="sticky top-24 h-[500px] bg-white border-4 border-black rounded-3xl overflow-hidden shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
+              <img
+                src={digitalCases[activeCaseIndex]?.banner || '/placeholder.jpg'}
+                alt={digitalCases[activeCaseIndex]?.title || 'Case Study'}
+                className="w-full h-full object-cover transition-opacity duration-500"
+                style={{ opacity: digitalCases[activeCaseIndex] ? 1 : 0 }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-black text-white p-4">
+                
               </div>
             </div>
           </div>
@@ -102,22 +153,22 @@ const DigitalMarketingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {[
               {
-                icon: '🚀',
+                
                 title: 'Results-Obsessed',
                 desc: 'We don’t do vanity metrics. Every campaign is engineered for measurable growth.',
               },
               {
-                icon: '🎨',
+               
                 title: 'Creative & Data-Driven',
                 desc: 'Beautiful creatives backed by ruthless analytics. The perfect blend.',
               },
               {
-                icon: '⚡',
+              
                 title: 'Agile & Transparent',
                 desc: 'Weekly reports, real-time dashboards, and zero black-box strategies.',
               },
               {
-                icon: '🤝',
+               
                 title: 'Partnership Mindset',
                 desc: 'Your success is our success. We grow when you grow.',
               },

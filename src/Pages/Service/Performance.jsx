@@ -39,7 +39,7 @@ const PerformanceMarketing = () => {
 
 
       {/* SERVICES SECTION */}
-      <section className="py-20 bg-gray-100 px-6 min-h-screen">
+      <section className="py-20 bg-gray-100 px-6 ">
         <div className="max-w-6xl mx-auto text-center mb-12">
           <h2 className="text-4xl font-bold text-black mb-4">Our Core Services</h2>
           <p className="text-gray-600 text-lg">Strategic, creative, and data-driven campaigns built to scale.</p>
@@ -120,7 +120,7 @@ const PerformanceMarketing = () => {
       </section>
 
       {/* FINAL CTA SECTION */}
-      <section className="py-24 bg-gradient-to-r from-pink-600 to-yellow-500 text-center text-black">
+      <section className="py-24  text-center text-black">
         <div className="max-w-3xl mx-auto space-y-6">
           <h2 className="text-4xl font-bold drop-shadow-md">Ready to scale smarter, not harder?</h2>
           <p className="text-lg text-black/80 font-medium">
