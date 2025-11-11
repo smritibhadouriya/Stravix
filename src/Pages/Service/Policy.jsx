@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const PrivacyPolicy = () => {
+     useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
   return (
     <div className="min-h-screen bg-white text-black py-12 px-6 md:px-12 lg:px-24">
       {/* Header */}

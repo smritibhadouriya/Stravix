@@ -31,7 +31,7 @@ const Auth = () => {
            <Route path="/services/Pr" element={<Pr/>} />
            <Route path="/services/Digital" element={<Digital/>} />
            <Route path="/services/Performance" element={<Performance/>} />
-           <Route path=" /legal/privacy" element={<Privacy/>} />
+           <Route path="/legal/privacy" element={<Privacy/>} />
            <Route path="/legal/terms" element={<Terms/>} />
           
            

@@ -19,6 +19,7 @@ const Team = () => {
 
   // Scroll to Testimonials if hash matches
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (location.hash === '#testimonials-section' && testimonialsRef.current) {
       const timer = setTimeout(() => {
         const offset = 80;
