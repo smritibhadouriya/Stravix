@@ -6,3 +6,17 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+ .scrollbar-thin::-webkit-scrollbar {
+      width: 8px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: #1a1a1a;
+      border-radius: 4px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: #fbbf24;
+      border-radius: 4px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }

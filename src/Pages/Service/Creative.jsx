@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Sparkles,
   Palette,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import BackgroundLarge from "../../assets/Creative.jpg";
 import BackgroundSmall from "../../assets/Backgroundsmall.jpg";
+import { useNavigate } from "react-router-dom";
 
 const designServices = [
   {
@@ -88,13 +89,27 @@ function useMediaQuery(query) {
   return matches;
 }
 
-const Design = () => {
+const Creative = () => {
   const isMd = useMediaQuery("(min-width: 768px)");
   const [hoveredService, setHoveredService] = useState(null);
+  const navigate =useNavigate();
 
+   const goToContact = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      const el = document.getElementById('contact-section');
+      if (el) {
+        const offset = 80;
+        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    } else {
+      navigate({ pathname: '/', hash: 'contact-section' });
+    }
+  };
   return (
     <>
-      {/* HERO */}
+      {/* ==================== HERO (100% UNTOUCHED) ==================== */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-center bg-cover"
         style={{
@@ -113,19 +128,24 @@ const Design = () => {
               WE CREATE EXPERIENCES.
             </span>
           </h1>
-          <button className="mt-8 bg-white text-gray-900 font-bold py-4 px-10 rounded-full flex items-center gap-3 mx-auto transition-all hover:gap-4 hover:bg-pink-100">
+          <button
+           onClick={goToContact}
+           className="mt-8 bg-white text-gray-900 font-bold py-4 px-10 rounded-full flex items-center gap-3 mx-auto transition-all hover:gap-4 hover:bg-pink-100">
             <span>Start Your Project</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section className="py-28 px-6 bg-gradient-to-b from-white to-pink-50 rounded-t-[4rem]">
+      {/* ==================== WHAT WE CRAFT ==================== */}
+      <section id="services-section" className="py-20 px-4 lg:px-12 xl:px-24 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-12 border-b-4 border-pink-200 w-fit pb-2">
-            What We Craft
-          </h1>
+          <div className="border-b border-black pb-4 mb-12">
+            <h1 className="font-bold text-3xl md:text-5xl text-gray-800">
+              What We Craft
+            </h1>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {designServices.map((service, i) => (
               <div
@@ -158,40 +178,45 @@ const Design = () => {
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="py-28 px-6 bg-gradient-to-b from-pink-50 via-white to-amber-50">
-        <div className="max-w-6xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-800 mb-4">
-            Our Process
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            From the first spark of an idea to the final campaign launch — 
-            here’s how we bring strategy, creativity, and precision together.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-4 gap-8">
-          {processSteps.map((step, i) => (
-            <div
-              key={i}
-              className="relative bg-white rounded-3xl p-8 shadow-md border border-gray-100 transition-transform hover:-translate-y-2"
-            >
-              <div className="absolute top-0 left-0 w-full h-1 rounded-t-3xl bg-gradient-to-r from-pink-500 to-yellow-400"></div>
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 text-white flex items-center justify-center font-black mb-4">
-                {step.step}
+      {/* ==================== OUR PROCESS ==================== */}
+      <section
+        id="process-section"
+        className="py-20 px-4 lg:px-12 xl:px-24 bg-cover bg-center"
+        style={{ backgroundImage: `url(${BackgroundLarge})` }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="border-b border-black pb-4 mb-12">
+            <h1 className="font-bold text-3xl md:text-5xl text-white">
+              Our Process
+            </h1>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {processSteps.map((step, i) => (
+              <div
+                key={i}
+                className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-200 transition-transform hover:-translate-y-2"
+              >
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 text-white flex items-center justify-center font-black mb-4">
+                  {step.step}
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-1">{step.title}</h3>
+                <p className="text-sm text-gray-600">{step.desc}</p>
               </div>
-              <h3 className="text-lg font-bold text-gray-800 mb-1">{step.title}</h3>
-              <p className="text-sm text-gray-600">{step.desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* PHILOSOPHY */}
-      <section className="py-28 px-6 bg-gradient-to-t from-amber-50 via-white to-pink-50">
+      {/* ==================== OUR PHILOSOPHY ==================== */}
+      <section id="philosophy-section" className="py-20 px-4 lg:px-12 xl:px-24 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-12 border-b-4 border-amber-300 w-fit pb-2">
-            Our Philosophy
-          </h1>
+          <div className="border-b border-black pb-4 mb-12">
+            <h1 className="font-bold text-3xl md:text-5xl text-gray-800">
+              Our Philosophy
+            </h1>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
             {creativeApproach.map((item, i) => (
               <div
@@ -216,52 +241,43 @@ const Design = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-40 px-6 bg-gradient-to-br from-white to-pink-50">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-l from-yellow-500 to-pink-500 bg-clip-text text-transparent">
-              Your Vision.
-            </h2>
-            <p className="text-lg text-gray-700 mb-10">
-              No templates. No limits. Just design that feels human, looks stunning, and wins hearts.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              {["48h First Draft", "Unlimited Revisions", "100% Ownership"].map(
-                (item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3 bg-white px-6 py-3 rounded-full border border-gray-200 shadow-sm"
-                  >
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span className="text-sm font-medium text-gray-800">
-                      {item}
-                    </span>
-                  </div>
-                )
-              )}
-            </div>
+      {/* ==================== FINAL CTA ==================== */}
+      <section className="py-32 px-4 lg:px-12 xl:px-24 bg-gradient-to-br from-pink-50 via-white to-yellow-50">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-l from-yellow-500 to-pink-500 bg-clip-text text-transparent">
+            Your Vision.
+          </h1>
+          <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
+            No templates. No limits. Just design that feels human, looks stunning, and wins hearts.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {["48h First Draft", "Unlimited Revisions", "100% Ownership"].map(
+              (item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-3 bg-white px-6 py-3 rounded-full border border-gray-200 shadow-sm"
+                >
+                  <CheckCircle className="w-5 h-5 text-emerald-500" />
+                  <span className="text-sm font-medium text-gray-800">
+                    {item}
+                  </span>
+                </div>
+              )
+            )}
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-l from-yellow-300 to-pink-400 blur-2xl opacity-40"></div>
-            <div className="relative bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
-              <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">
-                Let’s Build Together
-              </h3>
-              <button className="w-full bg-gradient-to-l from-yellow-400 to-pink-500 text-white font-bold py-6 px-8 rounded-2xl hover:scale-105 transition-all flex items-center justify-center gap-3 shadow-lg">
-                <MessageCircle className="w-7 h-7" />
-                Book a Free Call
-              </button>
-              <p className="text-gray-600 text-sm mt-5 text-center">
-                No pressure • 15 mins • Pure clarity
-              </p>
-            </div>
-          </div>
+          <button 
+          onClick={goToContact}
+          className="bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-12 rounded-full shadow-xl transition transform hover:scale-105 flex items-center gap-3 mx-auto">
+            <MessageCircle className="w-6 h-6" />
+            <span>Book Service</span>
+          </button>
+          
         </div>
       </section>
     </>
   );
 };
 
-export default Design;
+export default Creative;

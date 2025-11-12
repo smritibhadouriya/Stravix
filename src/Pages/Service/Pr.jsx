@@ -1,24 +1,23 @@
 // PRServicePage.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Background from '../../assets/pr.png'
+import Background from '../../assets/pr.png';
 import Backgroundlarge from "../../assets/pink-bg.jpg";        // <-- large screen
 import Backgroundsmall from "../../assets/Backgroundsmall.jpg";
 import { caseStudies } from '../../Data/CasestudyData';
+
 function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
-
   useEffect(() => {
     const mql = window.matchMedia(query);
     setMatches(mql.matches);
-
     const handler = (e) => setMatches(e.matches);
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);
   }, [query]);
-
   return matches;
 }
+
 /* -------------------------------------------------
    Helper: title → URL slug
    ------------------------------------------------- */
@@ -40,10 +39,29 @@ const PRServicePage = () => {
     const slug = toSlug(title);
     navigate(`/${slug}`);
   };
+    const goToContact = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      const el = document.getElementById('contact-section');
+      if (el) {
+        const offset = 80;
+        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    } else {
+      navigate({ pathname: '/', hash: 'contact-section' });
+    }
+  };
+
+  const gotocase =(e)=>{
+    e.preventDefault();
+    navigate("/case-studies")
+  }
 
   return (
     <div className="font-sans text-black overflow-x-hidden">
-      {/* ====================== HERO ====================== */}
+
+      {/* ====================== HERO (UNCHANGED) ====================== */}
       <section
         className="relative h-screen bg-cover bg-center bg-no-repeat flex items-center"
         style={{ backgroundImage: `url(${Background})` }}
@@ -79,6 +97,7 @@ const PRServicePage = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-start lg:justify-end animate-fadeInDelay2">
                 <button
+                onClick={goToContact}
                   aria-label="Get PR services now"
                   className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-xl text-lg glow-pink focus:outline-none focus:ring-4 focus:ring-pink-400"
                 >
@@ -86,6 +105,7 @@ const PRServicePage = () => {
                 </button>
 
                 <button
+                onClick={gotocase}
                   aria-label="View success stories"
                   className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-bold py-4 px-10 rounded-full transition text-lg backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-yellow-400"
                 >
@@ -98,17 +118,12 @@ const PRServicePage = () => {
       </section>
 
       {/* ====================== CASE STUDIES ====================== */}
-      <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-gray-50 to-white">
+      <section id="case-studies-section" className="py-20 px-4 lg:px-12 xl:px-24 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-yellow-500 uppercase tracking-widest text-sm font-bold">
-              We don’t just <span className="text-pink-500">talk</span>.
-              <br className="sm:hidden" />
-              We make you <span className="text-yellow-400">famous</span>.
-            </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mt-3 leading-tight">
+          <div className="border-b border-black pb-4 mb-12">
+            <h1 className="font-bold text-3xl md:text-5xl text-gray-800">
               Real PR Wins
-            </h2>
+            </h1>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -166,18 +181,16 @@ const PRServicePage = () => {
       </section>
 
       {/* ====================== SUCCESS STORIES ====================== */}
-      <section className="py-24 bg-gradient-to-b from-black to-gray-900 text-white px-6 md:px-12">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-yellow-400 uppercase tracking-widest text-sm font-bold">
-            As Seen In
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black mt-3 mb-16">
-            Brands We’ve Made{' '}
-            <span className="text-pink-400">Unignorable</span>
-          </h2>
+      <section id="success-stories-section" className="py-20 px-4 lg:px-12 xl:px-24 bg-gradient-to-b from-black to-gray-900 text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="border-b border-black pb-4 mb-12">
+            <h1 className="font-bold text-3xl md:text-5xl text-white">
+              Brands We’ve Made <span className="text-pink-400">Unignorable</span>
+            </h1>
+          </div>
 
           {/* press logos */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-700 mb-16">
             {[
               'Vogue',
               'Forbes',
@@ -198,25 +211,22 @@ const PRServicePage = () => {
           </div>
 
           {/* highlighted wins */}
-          <div className="mt-20 grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 brand: 'SpiceBox',
                 result: '1.2 M TikTok views in 48 h',
                 tag: 'Launch Campaign',
-                
               },
               {
                 brand: 'Brew & Bloom',
                 result: 'Featured in Vogue Living',
                 tag: 'Media Placement',
-               
               },
               {
                 brand: 'Crisis Turnaround',
                 result: '100 % positive sentiment shift',
                 tag: 'Reputation Fix',
-               
               },
             ].map((story, i) => (
               <div
@@ -238,35 +248,31 @@ const PRServicePage = () => {
       </section>
 
       {/* ====================== FINAL CTA ====================== */}
-      <section className="py-32 px-6 md:px-12  relative overflow-hidden"
-       style={{
-              backgroundImage: `url(${isMdOrLarger ? Backgroundlarge : Backgroundsmall})`,
-            }}>
-       
-       
-
+      <section
+        id="cta-section"
+        className="py-32 px-4 lg:px-12 xl:px-24 relative overflow-hidden"
+        style={{
+          backgroundImage: `url(${isMdOrLarger ? Backgroundlarge : Backgroundsmall})`,
+        }}
+      >
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
             Your brand deserves{' '}
             <span className="text-yellow-400">front-page love</span>.
-          </h2>
+          </h1>
           <p className="text-xl md:text-2xl mb-10 text-pink-500 font-light">
             Let’s craft a PR strategy that turns heads, fills seats, and
             empties shelves.
           </p>
 
           <button
+          onClick={goToContact}
             aria-label="Book a free strategy call"
             className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-5 px-14 rounded-full text-xl transition transform hover:scale-110 shadow-2xl glow-yellow animate-pulse-subtle focus:outline-none focus:ring-4 focus:ring-yellow-300"
           >
             Book Your Slot
           </button>
-
-         
         </div>
-
-
-       
       </section>
     </div>
   );
