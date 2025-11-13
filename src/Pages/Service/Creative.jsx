@@ -116,7 +116,7 @@ const Creative = () => {
           backgroundImage: `url(${isMd ? BackgroundLarge : BackgroundSmall})`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/60 via-transparent to-yellow-400/40 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/60 via-transparent to-yellow-100/40 mix-blend-multiply"></div>
         <div className="relative z-10 text-center px-6 max-w-4xl text-white drop-shadow-lg">
           <p className="uppercase tracking-[0.25em] text-sm mb-4 text-yellow-200 font-semibold">
             Design That Feels Alive

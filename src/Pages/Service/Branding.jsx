@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { MinusCircleIcon, PlusCircleIcon } from 'lucide-react';
-import Backgroundlarge from "../../assets/pink-bg.jpg";        // <-- large screen
+import Backgroundlarge from "../../assets/pink-bg.jpg";      
 import Backgroundsmall from "../../assets/Backgroundsmall.jpg";
+import BannerBack from '../../assets/bannerphoto.jpg'
 import { useNavigate } from 'react-router-dom';
 const brands = [
   {
@@ -142,7 +143,9 @@ const Branding = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: 'ur[](https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073)' }}>
+      <section className="relative h-screen bg-cover bg-center"  style={{
+                backgroundImage: `url(${BannerBack})`,
+              }}>
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-4xl mx-auto">
           <p className="text-sm md:text-base uppercase tracking-widest text-white mb-2">Designed to stand out</p>

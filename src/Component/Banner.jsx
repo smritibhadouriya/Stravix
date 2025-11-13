@@ -1,6 +1,6 @@
 import React from 'react';
-import Phone from '../assets/donut-website.mp4';
-import Large from '../assets/donut-website.mp4';
+import Phone from '../assets/ourvedio.mp4';
+import Large  from '../assets/ourvedio.mp4';
 
 const Banner = () => {
   return (
@@ -23,7 +23,7 @@ const Banner = () => {
           media='(min-width: 768px)'
         />
       </video>
-      <div className='absolute inset-0 bg-black/30'></div>
+      <div className='absolute inset-0 bg-black/10'></div>
     </div>
   );
 };

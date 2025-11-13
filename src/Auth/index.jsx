@@ -13,7 +13,7 @@ const Pr =lazy(()=>import ('../Pages/Service/Pr'))
 const Creative =lazy(()=>import ('../Pages/Service/Creative'))
 const Branding =lazy(()=>import ('../Pages/Service/Branding'))
 const Terms =lazy(()=>import ('../Pages/Tearms'))
-const Privacy =lazy(()=>import ('../Pages/Service/Policy'))
+const Privacy =lazy(()=>import ('../Pages/Policy'))
 const Auth = () => {
   return (
     <>

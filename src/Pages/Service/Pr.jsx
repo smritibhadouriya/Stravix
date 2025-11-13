@@ -5,6 +5,7 @@ import Background from '../../assets/pr.png';
 import Backgroundlarge from "../../assets/pink-bg.jpg";        // <-- large screen
 import Backgroundsmall from "../../assets/Backgroundsmall.jpg";
 import { caseStudies } from '../../Data/CasestudyData';
+import { ArrowRightFromLine, ArrowRightIcon } from 'lucide-react';
 
 function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
@@ -69,9 +70,7 @@ const PRServicePage = () => {
         {/* overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/15 to-transparent" />
 
-        {/* floating accents */}
-        <div className="absolute top-20 left-20 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 right-32 w-80 h-80 bg-yellow-400/20 rounded-full blur-3xl animate-pulse animation-delay-1000" />
+       
 
         <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center h-full">
@@ -168,7 +167,7 @@ const PRServicePage = () => {
                       className="inline-flex items-center mt-4 text-pink-500 font-bold text-sm uppercase tracking-wider group-hover:underline group-hover:translate-x-1 transition focus:outline-none focus:underline"
                       aria-label={`Read full story of ${study.title}`}
                     >
-                      Read full story <span className="ml-1">Right Arrow</span>
+                      Read full story <ArrowRightIcon className="ml-1"/>
                     </button>
                   </div>
 
